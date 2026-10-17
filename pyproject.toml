@@ -35,7 +35,7 @@ deavl = "deavl.cli:main"
 packages = ["src/deavl"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/examples", "/docs", "/.github", "/README.md", "/SECURITY.md", "/LICENSE", "/NOTICE", "/pyproject.toml", "/.gitignore"]
+include = ["/src", "/tests", "/examples", "/docs", "/.github", "/README.md", "/CONTRIBUTING.md", "/SECURITY.md", "/LICENSE", "/NOTICE", "/pyproject.toml", "/.gitignore"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

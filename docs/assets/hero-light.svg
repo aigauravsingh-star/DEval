@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">DEavl</title>
+  <desc id="desc">Decision-native evaluation. A blue wordmark beside an illustrative distribution motif with a coral threshold, not benchmark data.</desc>
+  <rect width="1200" height="300" fill="#f7f9fc"/>
+  <path d="M0 1H1200M0 299H1200" stroke="#d8e0eb" stroke-width="2"/>
+  <path d="M70 94V206H108M70 94H108" fill="none" stroke="#2563eb" stroke-width="5"/>
+  <text x="144" y="170" fill="#1b2639" font-family="Segoe UI,Arial,sans-serif" font-size="96" font-weight="700"><tspan fill="#2563eb">DE</tspan>avl</text>
+  <text x="149" y="222" fill="#46586f" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="600">DECISION-NATIVE EVALUATION</text>
+  <path d="M880 222H1120" stroke="#d8e0eb" stroke-width="3"/>
+  <path d="M910 222V170M964 222V130M1018 222V78M1072 222V110" stroke="#2563eb" stroke-width="24"/>
+  <path d="M1018 222V78" stroke="#0f766e" stroke-width="24"/>
+  <path d="M874 122H1120" stroke="#be123c" stroke-width="3" stroke-dasharray="8 7"/>
+</svg>
