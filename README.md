@@ -116,4 +116,3 @@ optional frameworks have their own settings. See [security guidance](SECURITY.md
 The core test suite is offline, including loopback HTTP tests. Optional integration
 tests exercise actual framework packages without model calls. Live provider access,
 model accuracy, hardware support, and performance require separate validation.
-

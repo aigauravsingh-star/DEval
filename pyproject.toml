@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "DEavl"
+version = "0.1.0"
+description = "Provider-independent, decision-native evaluation for AI applications."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{name = "DEavl Contributors"}]
+dependencies = []
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Programming Language :: Python :: 3",
+  "Topic :: Software Development :: Testing",
+]
+
+[project.urls]
+Repository = "https://github.com/aigauravsingh-star/DEval"
+Documentation = "https://github.com/aigauravsingh-star/DEval#readme"
+Issues = "https://github.com/aigauravsingh-star/DEval/issues"
+
+[project.optional-dependencies]
+azure = ["azure-identity>=1.17,<2"]
+deepeval = ["deepeval>=4.3.1,<5"]
+ragas = ["ragas>=0.4.3,<0.5"]
+dev = ["pytest>=8", "ruff>=0.6", "build>=1.2"]
+
+[project.scripts]
+deavl = "deavl.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/deavl"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/examples", "/docs", "/.github", "/README.md", "/SECURITY.md", "/LICENSE", "/NOTICE", "/pyproject.toml", "/.gitignore"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]

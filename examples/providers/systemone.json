@@ -1,0 +1,7 @@
+{
+  "provider": "systemone",
+  "base_url": "http://127.0.0.1:8899",
+  "model": "your-loaded-model",
+  "auth": "none",
+  "kinds": ["noul", "choice", "score"]
+}

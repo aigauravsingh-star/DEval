@@ -1,0 +1,6 @@
+{
+  "provider": "azure",
+  "base_url": "https://your-resource.services.ai.azure.com",
+  "model": "your-deployment-name",
+  "auth": "entra"
+}

@@ -1,0 +1,33 @@
+name: DEavl CI
+on:
+  push:
+  pull_request:
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m ruff check src tests examples
+      - run: python -m pytest -q
+      - run: python examples/offline_eval.py
+      - run: python -m build
+  integrations:
+    runs-on: ubuntu-latest
+    env:
+      CONFIDENT_TELEMETRY_OPT_OUT: "YES"
+      DEEPEVAL_TELEMETRY_OPT_OUT: "YES"
+      RAGAS_DO_NOT_TRACK: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -e ".[dev,deepeval,ragas]" "deepeval==4.3.1" "ragas==0.4.3"
+      - run: python -m pytest tests/test_integrations.py -q

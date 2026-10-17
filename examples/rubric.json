@@ -1,0 +1,18 @@
+{
+  "name": "response-quality",
+  "version": "1",
+  "threshold": 0.8,
+  "metrics": [
+    {
+      "question": {"id": "grounded", "instructions": "Is every factual claim in state.response supported by state.context? Missing evidence means false."},
+      "required": true
+    },
+    {
+      "question": {"id": "quality", "kind": "score", "instructions": "How well does state.response answer state.input using state.context?", "criteria": ["Wrong or irrelevant", "Partly correct", "Correct and relevant"]}
+    },
+    {
+      "question": {"id": "handling", "kind": "choice", "instructions": "How does state.response handle factual information?", "criteria": {"supported": "Uses information supported by state.context", "fabricated": "States unsupported information as fact", "not_applicable": "Contains no factual claims"}},
+      "credits": {"supported": 1, "fabricated": 0, "not_applicable": null}
+    }
+  ]
+}

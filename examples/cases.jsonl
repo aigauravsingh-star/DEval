@@ -1,0 +1,2 @@
+{"id":"supported","state":{"input":"When does the shop open?","response":"The shop opens at 9am.","context":["The shop opens at 9am every day."]},"labels":{"grounded":true,"quality":2,"handling":"supported"}}
+{"id":"unsupported","state":{"input":"When does the shop open?","response":"The shop opens at 5am.","context":["The shop opens at 9am every day."]},"labels":{"grounded":false,"quality":0,"handling":"fabricated"}}

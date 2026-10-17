@@ -1,0 +1,8 @@
+DEavl
+Copyright 2026 DEavl Contributors
+
+Independent Apache-2.0 software. Provider/framework names are used to describe
+interoperability and do not imply affiliation or endorsement. Ragas, DeepEval,
+Jev, Kev, Microsoft Foundry, and optional dependencies retain their own licenses.
+API documentation and public model cards informed the interoperability design;
+DEavl does not claim to originate decision-model evaluation.
