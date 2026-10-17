@@ -9,7 +9,7 @@ from urllib.error import HTTPError
 
 import pytest
 
-from deavl import BackendConfig, Question, SystemOneBackend, load_backend
+from deval import BackendConfig, Question, SystemOneBackend, load_backend
 
 
 QUESTIONS = (
@@ -34,7 +34,7 @@ def response():
 @pytest.fixture(autouse=True)
 def clean_env(monkeypatch):
     for key in list(os.environ):
-        if key.startswith(("DEAVL_", "JEV_", "TYPESAFE_", "AZURE_", "KEV_")):
+        if key.startswith(("DEVAL_", "JEV_", "TYPESAFE_", "AZURE_", "KEV_")):
             monkeypatch.delenv(key, raising=False)
 
 
@@ -128,7 +128,7 @@ def test_endpoint_cannot_redirect_host(endpoint):
 
 def test_kev_never_inherits_jev_credentials(monkeypatch):
     monkeypatch.setenv("JEV_API_KEY", "private")
-    monkeypatch.setenv("DEAVL_PROVIDER", "kev")
+    monkeypatch.setenv("DEVAL_PROVIDER", "kev")
     backend = load_backend()
     assert backend.base_url == "http://127.0.0.1:8009"
     assert backend.auth == "none"
@@ -210,8 +210,8 @@ def test_bad_config(data):
 def test_file_precedence(tmp_path, monkeypatch):
     path = tmp_path / "decision.json"
     path.write_text('{"provider":"kev"}', encoding="utf-8")
-    monkeypatch.setenv("DEAVL_CONFIG", str(path))
-    monkeypatch.setenv("DEAVL_PROVIDER", "unknown")
+    monkeypatch.setenv("DEVAL_CONFIG", str(path))
+    monkeypatch.setenv("DEVAL_PROVIDER", "unknown")
     assert load_backend().provider == "kev"
     assert load_backend(BackendConfig(provider="kev")).provider == "kev"
 

@@ -4,12 +4,12 @@ import argparse
 import json
 from pathlib import Path
 
-from deavl import Answer, Evaluator, FixtureBackend, Rubric, benchmark, read_jsonl
-from deavl.jsonio import read_json, write_json
+from deval import Answer, Evaluator, FixtureBackend, Rubric, benchmark, read_jsonl
+from deval.jsonio import read_json, write_json
 
 
 def main():
-    parser = argparse.ArgumentParser(description="DEavl fixture demo, not model inference.")
+    parser = argparse.ArgumentParser(description="DEval fixture demo, not model inference.")
     parser.add_argument("--output", help="Optional run JSON path; also writes benchmark statistics.")
     args = parser.parse_args()
     root = Path(__file__).parent
@@ -29,7 +29,7 @@ def main():
     if args.output:
         write_json(args.output, report.to_dict())
         write_json(args.output + ".benchmark.json", stats)
-    print("DEavl fixture demo: fixed scores, not model inference.")
+    print("DEval fixture demo: fixed scores, not model inference.")
     print(json.dumps({"summary": report.summary, "judge_metrics": {
         key: {"accuracy": value["accuracy"], "brier_score": value["brier_score"],
               "ece": value["ece"], "false_passes": value["judge_pass_confusion"]["false_positive"]}

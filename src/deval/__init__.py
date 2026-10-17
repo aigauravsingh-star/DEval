@@ -6,7 +6,7 @@ from .evaluator import EvalResult, Evaluator, RunReport
 from .rubrics import Metric, Rubric, application_quality, tool_faithfulness
 from .types import Answer, Capabilities, DecisionBatch, EvalCase, Question, Usage
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 __all__ = [
     "Answer",
     "BackendConfig",

@@ -1,13 +1,13 @@
 # Security and Privacy
 
-DEavl is alpha evaluation software, not a certified security boundary.
+DEval is alpha evaluation software, not a certified security boundary.
 
 - Configuration and custom Python adapters/hooks are trusted server-side code.
   An endpoint change changes where evaluation data goes. Do not accept config
   files, credential variable names, or backend identities from untrusted prompts.
 - Hosted providers receive selected states and rubric questions. Local inference
   privacy also depends on serving code, network egress, dependencies, and logs.
-- Core DEavl performs no telemetry or automatic report upload. Optional frameworks
+- Core DEval performs no telemetry or automatic report upload. Optional frameworks
   and identity SDKs are separate products with separate behavior.
 - Plain HTTP is limited to loopback unless explicitly allowed. Redirects are
   refused. TLS certificate verification uses Python's default trust configuration.

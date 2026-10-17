@@ -141,7 +141,7 @@ class Evaluator:
         questions = tuple(m.question for m in rubric.metrics)
         manifest = {
             "schema_version": "1",
-            "library_version": "0.1.0",
+            "library_version": "0.2.0",
             "run_id": str(uuid4()),
             "created_at": datetime.now(timezone.utc).isoformat(),
             "dataset_hash": fingerprint([case.to_dict() for case in cases]),

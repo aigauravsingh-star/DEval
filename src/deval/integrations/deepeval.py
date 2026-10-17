@@ -21,11 +21,11 @@ def _json_value(value):
 
 
 def as_deepeval_metric(backend, rubric):
-    """Wrap a DEavl rubric as a DeepEval BaseMetric; no generative judge involved."""
+    """Wrap a DEval rubric as a DeepEval BaseMetric; no generative judge involved."""
     try:
         from deepeval.metrics import BaseMetric
     except ImportError:
-        raise ImportError("Install DEavl[deepeval] to use this integration.") from None
+        raise ImportError("Install DEval[deepeval] to use this integration.") from None
 
     class DecisionMetric(BaseMetric):
         def __init__(self):
@@ -97,7 +97,7 @@ def as_deepeval_model(backend):
             SystemOneAnswers,
         )
     except ImportError:
-        raise ImportError("Install DEavl[deepeval] with the System One model interface.") from None
+        raise ImportError("Install DEval[deepeval] with the System One model interface.") from None
 
     class DecisionModel(DeepEvalBaseSystemOneModel):
         def __init__(self):

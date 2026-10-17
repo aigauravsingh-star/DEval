@@ -1,8 +1,8 @@
 # Provider Setup
 
 `load_backend` accepts a trusted JSON path, dictionary, `BackendConfig`, or no
-argument to read `DEAVL_CONFIG` / `DEAVL_*` environment settings. A supplied
-file/object wins over environment configuration. A `DEAVL_CONFIG` file wins over
+argument to read `DEVAL_CONFIG` / `DEVAL_*` environment settings. A supplied
+file/object wins over environment configuration. A `DEVAL_CONFIG` file wins over
 individual field variables. Secrets are resolved only from the named environment
 variable. Files never contain literal credentials, and `.env` is not auto-loaded.
 
@@ -37,7 +37,7 @@ uv run --extra serve python -m kev.serve --run jaredpalmer/kev-4b@v1.0 --host 12
 Initial model downloads require network/storage. `kev-latest` in requests addresses
 the server's loaded checkpoint; pin the serving weights and code separately.
 CPU/smaller models have different latency and accuracy. Keep state truncation
-disabled. If a response reports truncation, DEavl rejects it.
+disabled. If a response reports truncation, DEval rejects it.
 
 For authenticated Kev, set `KEV_API_KEY` on the server. Set the matching secret
 in the client process and add `"auth": "bearer", "api_key_env": "KEV_API_KEY"`.
@@ -60,11 +60,11 @@ python -m pip install -e ".[azure]"
 
 Use `auth: "entra"` with no `api_key_env`. Azure's `DefaultAzureCredential` is
 queried on each request and handles its own caching/renewal. Identity and RBAC
-are configured outside DEavl. Foundry still processes evaluation data externally.
+are configured outside DEval. Foundry still processes evaluation data externally.
 
 ## Configuration Fields
 
-Each field has an environment equivalent named `DEAVL_` plus its uppercase name:
+Each field has an environment equivalent named `DEVAL_` plus its uppercase name:
 
 - `provider`, `model`, `base_url`, `endpoint` select the backend and route.
 - `auth`: `none`, `bearer`, `api_key`, or Azure-only `entra`.

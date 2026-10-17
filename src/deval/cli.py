@@ -13,7 +13,7 @@ from .rubrics import Rubric
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(prog="deavl")
+    parser = argparse.ArgumentParser(prog="deval")
     commands = parser.add_subparsers(dest="command", required=True)
     run = commands.add_parser("run", help="Evaluate JSONL cases with a configured provider.")
     run.add_argument("dataset")
@@ -75,7 +75,7 @@ def main(argv=None):
     except (OSError, ValueError, TypeError, KeyError, RuntimeError) as exc:
         # Provider exception bodies can include prompts; the report carries error classes only.
         print(
-            f"DEavl: command failed ({type(exc).__name__}). Check config, schemas, and permissions.",
+            f"DEval: command failed ({type(exc).__name__}). Check config, schemas, and permissions.",
             file=sys.stderr,
         )
         return 1

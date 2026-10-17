@@ -3,7 +3,7 @@ from dataclasses import replace
 
 import pytest
 
-from deavl import (
+from deval import (
     Answer,
     Capabilities,
     DecisionBatch,
@@ -18,7 +18,7 @@ from deavl import (
     benchmark,
     compare_runs,
 )
-from deavl.jsonio import fingerprint, loads
+from deval.jsonio import fingerprint, loads
 
 
 def make_rubric():

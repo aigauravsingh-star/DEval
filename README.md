@@ -1,15 +1,15 @@
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/hero-dark.svg">
-    <img src="docs/assets/hero-light.svg" alt="DEavl - decision-native evaluation" width="1000">
+    <img src="docs/assets/hero-light.svg" alt="DEval - decision-native evaluation" width="1000">
   </picture>
 </p>
 
 <h1 align="center">Decision-model evaluation for AI applications</h1>
 
 <p align="center">
-  <strong>Write the rubric once. Choose the decision model in config.</strong><br>
-  Turn bounded questions into explicit scores, then benchmark the judge itself.
+  <strong>Decision-first. Model-agnostic.</strong><br>
+  Write the rubric once. Choose a compatible System One decision model through config.
 </p>
 
 <p align="center">
@@ -32,8 +32,8 @@
 
 ---
 
-**DEavl separates semantic judgment from scoring.** A decision model answers
-questions about your application's output. DEavl validates the probability
+**DEval is decision-first and model-agnostic.** A System One decision model answers
+questions about your application's output. DEval validates the probability
 distributions, applies your rubric, and records a report you can inspect and compare.
 
 Use **Jev, self-hosted Kev, Microsoft Foundry, or a compatible System One server**
@@ -42,12 +42,13 @@ Ragas with optional adapters. The core has no runtime dependencies and does not
 depend on JevRails.
 
 > [!NOTE]
-> This repository is named **DEval**; the library, Python import, and CLI are
-> **DEavl**, `deavl`, and `deavl`. Install from source using the quickstart below.
+> The library is **DEval**. Python imports and the CLI use `deval`; configuration
+> variables use `DEVAL_*`. Upgrading from the earlier spelling? See the
+> [0.2 migration guide](docs/migration.md).
 
 ## What Can You Evaluate?
 
-| Your Goal | What DEavl Provides |
+| Your Goal | What DEval Provides |
 | --- | --- |
 | **Check RAG answers** | Questions about holistic groundedness, relevance, and instruction adherence |
 | **Assess tool use** | Rubrics about grounding in tool results and authorized operations |
@@ -82,7 +83,7 @@ errors never fall back to fixtures. This is a source release, not a PyPI release
 Start a local Kev server first, then run:
 
 ```bash
-deavl run examples/cases.jsonl \
+deval run examples/cases.jsonl \
   --rubric examples/rubric.json \
   --config examples/providers/kev.json \
   --output kev-report.json --benchmark
@@ -101,7 +102,7 @@ or configuration error.
 ### 3. Define Your Own Rubric in Python
 
 ```python
-from deavl import EvalCase, Evaluator, Metric, Question, Rubric, load_backend
+from deval import EvalCase, Evaluator, Metric, Question, Rubric, load_backend
 
 rubric = Rubric("support", version="1", metrics=(
     Metric(
@@ -123,7 +124,7 @@ report = Evaluator(backend).evaluate(cases, rubric)
 print(report.summary)
 ```
 
-The model judges the two questions. DEavl computes their scores. A required
+The model judges the two questions. DEval computes their scores. A required
 metric must pass independently of the weighted average. These example thresholds
 are starting points, not certified safety settings.
 
@@ -149,12 +150,12 @@ python -m pip install -e ".[deepeval,ragas]"
 
 | Workflow | Adapter |
 | --- | --- |
-| DEavl rubric inside DeepEval | `as_deepeval_metric(backend, rubric)` |
-| DEavl provider inside native JevEval | `as_deepeval_model(backend)` |
+| DEval rubric inside DeepEval | `as_deepeval_metric(backend, rubric)` |
+| DEval provider inside native JevEval | `as_deepeval_model(backend)` |
 | Custom numeric metric in Ragas | `as_ragas_metric(backend, rubric)` |
 
 Read the [complete framework examples](docs/integrations.md). The Ragas adapter
-returns a numeric score, not DEavl's required-gate verdict, and is not the legacy
+returns a numeric score, not DEval's required-gate verdict, and is not the legacy
 `ragas.evaluate` interface. Generative extraction and built-in framework metrics
 are not automatically replaced by a decision model.
 
@@ -163,8 +164,8 @@ are not automatically replaced by a decision model.
 Give your dataset independent labels to measure whether the judge is right:
 
 ```bash
-deavl benchmark kev-report.json examples/cases.jsonl --output judge-stats.json
-deavl compare examples/cases.jsonl kev-report.json jev-report.json --output comparison.json
+deval benchmark kev-report.json examples/cases.jsonl --output judge-stats.json
+deval compare examples/cases.jsonl kev-report.json jev-report.json --output comparison.json
 ```
 
 The second command needs reports from both providers on matching data and rubric.
@@ -182,6 +183,7 @@ Gold labels are separate from evaluation state and are not sent by default.
 | [Providers](docs/providers.md) | Hosted/local setup, environment variables, authentication, and capabilities |
 | [Scoring and benchmarks](docs/scoring.md) | Score math, required gates, independent labels, and comparisons |
 | [Integrations](docs/integrations.md) | DeepEval, native JevEval, Ragas, and custom backend examples |
+| [Migration](docs/migration.md) | Updated package name, imports, CLI, and environment variables |
 | [Examples](examples) | Offline demo, live evaluation, JSONL cases, rubrics, and provider configs |
 | [Security](SECURITY.md) | Data flow, report sensitivity, and vulnerability reporting |
 | [Contributing](CONTRIBUTING.md) | Local checks and useful first contributions |
@@ -192,7 +194,7 @@ Gold labels are separate from evaluation state and are not sent by default.
 
 No. [DeepEval already offers JevEval](https://deepeval.com/docs/metrics-jev-eval),
 and [Ragas supports custom metrics](https://docs.ragas.io/en/stable/references/metrics/).
-DEavl complements them with a small portable engine, explicit scoring, provider
+DEval complements them with a small portable engine, explicit scoring, provider
 configuration, and independent-label judge benchmarks.
 
 **Does it support every model or modality?**
@@ -205,7 +207,7 @@ that its probabilities are calibrated.
 **Where does my data go?**
 
 The selected backend receives your evaluation state and questions. Self-hosting
-can keep inference within your infrastructure. Core DEavl sends no telemetry and
+can keep inference within your infrastructure. Core DEval sends no telemetry and
 does not upload reports automatically; optional frameworks have their own settings.
 Reports omit inputs by default but can still contain sensitive metadata and rubric
 text. See [SECURITY.md](SECURITY.md).
@@ -214,7 +216,7 @@ text. See [SECURITY.md](SECURITY.md).
 
 No. Holistic groundedness is not claim-level Ragas Faithfulness or fact-checking.
 Extraction requires supplied claims or a separately versioned preparation step.
-DEavl does not silently generate claims or model-written explanations.
+DEval does not silently generate claims or model-written explanations.
 
 ## Contribute
 

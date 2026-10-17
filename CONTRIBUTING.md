@@ -1,4 +1,4 @@
-# Contributing to DEavl
+# Contributing to DEval
 
 Thanks for helping improve decision-model evaluation. Small, testable changes
 and clear bug reports are especially useful while the library is in alpha.

@@ -68,13 +68,13 @@ class BackendConfig:
     def from_env(cls):
         data = {}
         for item in fields(cls):
-            key = "DEAVL_" + item.name.upper()
+            key = "DEVAL_" + item.name.upper()
             if key not in os.environ:
                 continue
             value: Any = os.environ[key]
             if item.name == "allow_insecure_http":
                 if value.lower() not in {"true", "false"}:
-                    raise ValueError("DEAVL_ALLOW_INSECURE_HTTP must be true or false.")
+                    raise ValueError("DEVAL_ALLOW_INSECURE_HTTP must be true or false.")
                 value = value.lower() == "true"
             elif item.name == "kinds":
                 value = value.split(",")
@@ -127,7 +127,7 @@ class BackendConfig:
             try:
                 from azure.identity import DefaultAzureCredential
             except ImportError:
-                raise RuntimeError("Install DEavl[azure] for Entra authentication.") from None
+                raise RuntimeError("Install DEval[azure] for Entra authentication.") from None
             identity = DefaultAzureCredential()
 
             def token_provider():
@@ -165,7 +165,7 @@ class BackendConfig:
 
 def load_backend(config: BackendConfig | Mapping | str | Path | None = None) -> SystemOneBackend:
     if config is None:
-        path = os.environ.get("DEAVL_CONFIG")
+        path = os.environ.get("DEVAL_CONFIG")
         config = BackendConfig.from_dict(read_json(path)) if path else BackendConfig.from_env()
     elif isinstance(config, (str, Path)):
         config = BackendConfig.from_dict(read_json(config))

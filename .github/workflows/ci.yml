@@ -1,4 +1,4 @@
-name: DEavl CI
+name: DEval CI
 on:
   push:
   pull_request:

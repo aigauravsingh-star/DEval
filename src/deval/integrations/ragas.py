@@ -9,7 +9,7 @@ def as_ragas_metric(backend, rubric):
     try:
         from ragas.metrics import numeric_metric
     except ImportError:
-        raise ImportError("Install DEavl[ragas] to use this integration.") from None
+        raise ImportError("Install DEval[ragas] to use this integration.") from None
 
     @numeric_metric(name=rubric.name, allowed_values=(0.0, 1.0))
     def decision_score(

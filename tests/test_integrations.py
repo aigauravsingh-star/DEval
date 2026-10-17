@@ -3,7 +3,7 @@ import socket
 
 import pytest
 
-from deavl import Answer, FixtureBackend, Metric, Question, Rubric
+from deval import Answer, FixtureBackend, Metric, Question, Rubric
 
 
 @pytest.fixture(autouse=True)
@@ -32,7 +32,7 @@ def backend_and_rubric():
 def test_real_deepeval_metric_and_async():
     pytest.importorskip("deepeval")
     from deepeval.test_case import LLMTestCase
-    from deavl.integrations.deepeval import as_deepeval_metric
+    from deval.integrations.deepeval import as_deepeval_metric
 
     backend, rubric = backend_and_rubric()
     metric = as_deepeval_metric(backend, rubric)
@@ -51,7 +51,7 @@ def test_real_deepeval_metric_and_async():
 def test_real_deepeval_system_one_interface_all_types():
     pytest.importorskip("deepeval")
     from deepeval.models.system_one.schema import ChoiceQuestion, NoulQuestion, ScoreQuestion
-    from deavl.integrations.deepeval import as_deepeval_model
+    from deval.integrations.deepeval import as_deepeval_model
 
     backend = FixtureBackend(
         {
@@ -75,13 +75,13 @@ def test_real_deepeval_system_one_interface_all_types():
     assert async_answers.nouls["yes"].probability == 0.9
 
 
-def test_real_jev_eval_accepts_deavl_model():
+def test_real_jev_eval_accepts_deval_model():
     pytest.importorskip("deepeval")
     from deepeval.metrics import JevEval
     from deepeval.metrics.jev_eval import Noul
     from deepeval.test_case import LLMTestCase, SingleTurnParams
-    from deavl import DecisionBatch, DecisionBackend
-    from deavl.integrations.deepeval import as_deepeval_model
+    from deval import DecisionBatch, DecisionBackend
+    from deval.integrations.deepeval import as_deepeval_model
 
     class AlwaysYes(DecisionBackend):
         def identity(self):
@@ -106,7 +106,7 @@ def test_real_jev_eval_accepts_deavl_model():
 
 def test_real_ragas_numeric_metric():
     pytest.importorskip("ragas")
-    from deavl.integrations.ragas import as_ragas_metric
+    from deval.integrations.ragas import as_ragas_metric
 
     backend, rubric = backend_and_rubric()
     metric = as_ragas_metric(backend, rubric)

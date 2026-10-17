@@ -2,7 +2,7 @@
 
 ## Application Evaluation
 
-Questions address only the state you supply. DEavl does not retrieve evidence or
+Questions address only the state you supply. DEval does not retrieve evidence or
 invent missing context. A prompt-injection-resistant judge still requires testing;
 untrusted evaluation content can attack the evaluator itself.
 
@@ -42,7 +42,7 @@ The optional preparation hook can mask data, select fields, or attach claims
 extracted by a separate system. It requires a version for run provenance:
 
 ```python
-from deavl import EvalCase, Evaluator
+from deval import EvalCase, Evaluator
 
 def prepare(case: EvalCase):
     # supplied_claims must come from your extraction process, not this evaluator.

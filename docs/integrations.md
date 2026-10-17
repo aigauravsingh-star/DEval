@@ -10,8 +10,8 @@ upload settings; review those before processing sensitive data.
 
 ```python
 from deepeval.test_case import LLMTestCase
-from deavl import Metric, Question, Rubric, load_backend
-from deavl.integrations.deepeval import as_deepeval_metric
+from deval import Metric, Question, Rubric, load_backend
+from deval.integrations.deepeval import as_deepeval_metric
 
 rubric = Rubric("relevance", "1", (
     Metric(Question("relevant", "Does state.response answer state.input?")),
@@ -36,8 +36,8 @@ reuse one instance yourself. The built-in wrapper is for single-turn test cases.
 from deepeval.metrics import JevEval
 from deepeval.metrics.jev_eval import Noul
 from deepeval.test_case import SingleTurnParams
-from deavl import load_backend
-from deavl.integrations.deepeval import as_deepeval_model
+from deval import load_backend
+from deval.integrations.deepeval import as_deepeval_model
 
 model = as_deepeval_model(load_backend({"provider": "kev"}))
 metric = JevEval(
@@ -49,9 +49,9 @@ metric = JevEval(
 ```
 
 The framework owns the questions, state names, aggregation, and runner in this
-mode; DEavl supplies provider transport and typed decisions. Noul, Choice, and
+mode; DEval supplies provider transport and typed decisions. Noul, Choice, and
 Score are mapped explicitly. Structured/non-string question descriptions that
-DEavl cannot represent are rejected. The adapter's confidence is distribution
+DEval cannot represent are rejected. The adapter's confidence is distribution
 concentration required by the framework, not extra evidence of correctness.
 
 Only use the model for DeepEval modes that support its System One interface.
@@ -61,8 +61,8 @@ generator. Built-in metric availability and algorithms are framework-specific.
 ## Ragas Numeric Metric
 
 ```python
-from deavl import Metric, Question, Rubric, load_backend
-from deavl.integrations.ragas import as_ragas_metric
+from deval import Metric, Question, Rubric, load_backend
+from deval.integrations.ragas import as_ragas_metric
 
 rubric = Rubric("relevance", "1", (
     Metric(Question("relevant", "Does state.response answer state.input?")),
@@ -80,8 +80,8 @@ This wraps Ragas's native `numeric_metric` for custom scoring/experiments, not
 the legacy `ragas.evaluate` collection-metric interface. It maps user_input to
 input, response to response, retrieved_contexts to context, and reference to
 reference. Ragas numeric values carry the weighted score only; hard requirements
-and DEavl's overall pass verdict are not encoded in that scalar. For release
-gates, use the standalone DEavl report or DeepEval metric adapter.
+and DEval's overall pass verdict are not encoded in that scalar. For release
+gates, use the standalone DEval report or DeepEval metric adapter.
 
 This is not a custom text-generation LLM wrapper and does not automatically
 replace Ragas's built-in Faithfulness, embeddings, or synthetic-data generation.

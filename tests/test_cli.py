@@ -2,10 +2,10 @@ import json
 
 import pytest
 
-from deavl import Answer, FixtureBackend, Metric, Question, Rubric
-from deavl.cli import main
-from deavl.datasets import read_jsonl
-from deavl.jsonio import read_json, write_json
+from deval import Answer, FixtureBackend, Metric, Question, Rubric
+from deval.cli import main
+from deval.datasets import read_jsonl
+from deval.jsonio import read_json, write_json
 
 
 @pytest.fixture
@@ -19,7 +19,7 @@ def inputs(tmp_path, monkeypatch):
     write_json(rubric_path, rubric.to_dict())
     write_json(config_path, {"provider": "kev"})
     backend = FixtureBackend({"correct": Answer("noul", {"false": 0.1, "true": 0.9})})
-    monkeypatch.setattr("deavl.cli.load_backend", lambda path: backend)
+    monkeypatch.setattr("deval.cli.load_backend", lambda path: backend)
     return dataset, rubric_path, config_path, tmp_path / "report.json", backend
 
 

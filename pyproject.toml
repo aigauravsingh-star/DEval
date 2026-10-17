@@ -3,13 +3,13 @@ requires = ["hatchling>=1.25"]
 build-backend = "hatchling.build"
 
 [project]
-name = "DEavl"
-version = "0.1.0"
+name = "DEval"
+version = "0.2.0"
 description = "Provider-independent, decision-native evaluation for AI applications."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
-authors = [{name = "DEavl Contributors"}]
+authors = [{name = "DEval Contributors"}]
 dependencies = []
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -29,10 +29,10 @@ ragas = ["ragas>=0.4.3,<0.5"]
 dev = ["pytest>=8", "ruff>=0.6", "build>=1.2"]
 
 [project.scripts]
-deavl = "deavl.cli:main"
+deval = "deval.cli:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/deavl"]
+packages = ["src/deval"]
 
 [tool.hatch.build.targets.sdist]
 include = ["/src", "/tests", "/examples", "/docs", "/.github", "/README.md", "/CONTRIBUTING.md", "/SECURITY.md", "/LICENSE", "/NOTICE", "/pyproject.toml", "/.gitignore"]

@@ -152,7 +152,7 @@ class SystemOneBackend(DecisionBackend):
         headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            "User-Agent": "DEavl/0.1.0",
+            "User-Agent": "DEval/0.2.0",
         }
         if self.auth != "none":
             try:

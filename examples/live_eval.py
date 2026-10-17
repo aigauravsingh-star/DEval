@@ -4,8 +4,8 @@ import argparse
 import json
 from pathlib import Path
 
-from deavl import Evaluator, Rubric, load_backend, read_jsonl
-from deavl.jsonio import read_json, write_json
+from deval import Evaluator, Rubric, load_backend, read_jsonl
+from deval.jsonio import read_json, write_json
 
 
 def main():

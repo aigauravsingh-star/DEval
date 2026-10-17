@@ -6,7 +6,7 @@ import types
 
 import pytest
 
-from deavl import Answer, FixtureBackend, Metric, Question, Rubric
+from deval import Answer, FixtureBackend, Metric, Question, Rubric
 
 
 def setup_metric():
@@ -21,7 +21,7 @@ def test_deepeval_metric_contract_and_error_reset(monkeypatch):
     module.BaseMetric = type("BaseMetric", (), {})
     monkeypatch.setitem(sys.modules, "deepeval", package)
     monkeypatch.setitem(sys.modules, "deepeval.metrics", module)
-    from deavl.integrations.deepeval import as_deepeval_metric
+    from deval.integrations.deepeval import as_deepeval_metric
 
     backend, rubric = setup_metric()
     metric = as_deepeval_metric(backend, rubric)
@@ -54,7 +54,7 @@ def test_ragas_metric_contract(monkeypatch):
     module.numeric_metric = numeric_metric
     monkeypatch.setitem(sys.modules, "ragas", types.ModuleType("ragas"))
     monkeypatch.setitem(sys.modules, "ragas.metrics", module)
-    from deavl.integrations.ragas import as_ragas_metric
+    from deval.integrations.ragas import as_ragas_metric
 
     backend, rubric = setup_metric()
     metric = as_ragas_metric(backend, rubric)
@@ -109,7 +109,7 @@ def test_native_deepeval_model_contract(monkeypatch):
         "deepeval.models.system_one.schema": schema,
     }.items():
         monkeypatch.setitem(sys.modules, name, module)
-    from deavl.integrations.deepeval import as_deepeval_model
+    from deval.integrations.deepeval import as_deepeval_model
 
     backend = FixtureBackend(
         {
